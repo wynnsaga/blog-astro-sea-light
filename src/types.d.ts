@@ -8,11 +8,17 @@ export interface Social {
 export interface SubNav {
     text: string,
     href: string,
+    isActive: boolean
 }
+
 export interface Nav {
     text: string,
     href: string,
-    children?: SubNav[]
+    image: string,
+    paratext: string,
+    type: 'page' | 'group',
+    children: SubNav[], // 如果 type 为 group，但没有children，则将其自身添加到 children
+    isActive?: boolean
 }
 
 // 归档项

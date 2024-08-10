@@ -3,7 +3,7 @@ import "../styles/page.scss";
 import BaseLayout from "./BaseLayout.astro";
 import Header from "../components/partial/Header.astro";
 import PageCaption from "../components/partial/PageCaption.astro";
-import type { SubNav } from "../types";
+import { type Nav, type SubNav } from "../types";
 import { index } from "../configs/site.json";
 
 interface Props {
@@ -13,15 +13,25 @@ interface Props {
     bgImage?: string;
 }
 
-const { headline, paratext, subline = "", bgImage = "" } = Astro.props;
-
 const { navs } = index;
-const pathname = Astro.url.pathname;
-const currNav = navs.find((nav) => nav.href === pathname);
-console.log(currNav);
-let submenu: SubNav[] = [];
-if (currNav && currNav.children) {
-    submenu = currNav.children;
+const { headline, paratext, subline, bgImage } = Astro.props;
+
+const currPathname = Astro.url.pathname; // '/techblog/blog'
+const routes = decodeURI(currPathname).match(/[^\/]+/g); // [ 'techblog', 'blog' ]
+
+let submenu: any[] = [];
+if (routes && routes.length == 2) {
+    const pRoute = `/${routes[0]}`;
+    const currNav = navs.find((nav) => nav.href === pRoute);
+    if (currNav && currNav.children) {
+        submenu = currNav.children.map((child) => {
+            return {
+                text: child.text,
+                href: `${currNav.href}${child.href}`,
+                isActive: currPathname === pRoute + child.href,
+            };
+        });
+    }
 }
 ---
 
@@ -41,8 +51,9 @@ if (currNav && currNav.children) {
                 <div class="page-submenu">
                     {submenu.map((menu) => (
                         <a
+                            href={menu.href}
                             class="submenu-item"
-                            href={`${currNav?.href}${menu.href}`}
+                            class:list={[{ active: menu.isActive }]}
                         >
                             {menu.text}
                         </a>

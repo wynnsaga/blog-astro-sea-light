@@ -10,6 +10,8 @@ interface Props {
 }
 
 const { headline, paratext, subline = "", bgImage = "" } = Astro.props;
+
+console.log(subline);
 ---
 
 <div
@@ -21,7 +23,7 @@ const { headline, paratext, subline = "", bgImage = "" } = Astro.props;
         <Image src={Avatar} alt="avatar" class="avatar" />
         <a href="#">
             {headline}
-            {subline && +` - ${subline}`}
+            {subline && ` - ${subline}`}
         </a>
     </div>
     <div class="banner-box">

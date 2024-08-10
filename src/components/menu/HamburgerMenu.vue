@@ -3,6 +3,30 @@ import { index } from "../../configs/site.json";
 
 const navs = index.navs;
 
+const menus = [];
+
+navs.map((nav) => {
+    if (!nav.children) {
+        menus.push({
+            text: nav.text,
+            href: nav.href,
+        })
+    } else {
+        menus.push({
+            text: nav.text,
+            href: nav.href + nav.children[0].href
+        });
+
+        nav.children.map(child => {
+            menus.push({
+                text: child.text,
+                href: nav.href + child.href,
+                isSubmenu: true
+            });
+        })
+    }
+})
+
 const handleBtnClick = function () {
     const menu = document.getElementById("menu");
     if (menu) {
@@ -24,14 +48,8 @@ const handleBtnClick = function () {
                 X
             </button>
             <ul class="menu-list">
-                <li class="menu-item" v-for="(item) in navs">
-                    <a :href="item.href" :key="item.href">{{ item.text }}</a>
-
-                    <div v-if="item.children && item.children.length > 0" class="submenu">
-                        <li v-for="(child) in item.children">
-                            <a :href="child.href" :key="child.href">{{ child.text }}</a>
-                        </li>
-                    </div>
+                <li class="menu-item" v-for="(item) in menus">
+                    <a :href="item.href" :key="item.href" :class="{'submenu' : item.isSubmenu}">{{ item.text }}</a>
                 </li>
             </ul>
         </div>

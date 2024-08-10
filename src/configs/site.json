@@ -26,10 +26,6 @@
                         "href": "/archive"
                     },
                     {
-                        "text": "分类",
-                        "href": "/category"
-                    },
-                    {
                         "text": "标签",
                         "href": "/tag"
                     },
@@ -52,10 +48,6 @@
                         "href": "/journey"
                     },
                     {
-                        "text": "点评",
-                        "href": "/remark"
-                    },
-                    {
                         "text": "画廊",
                         "href": "/gallary"
                     },
@@ -71,7 +63,8 @@
             },
             {
                 "text": "关于",
-                "href": "/about"
+                "href": "/about",
+                "type": "page"
             }
         ]
     },

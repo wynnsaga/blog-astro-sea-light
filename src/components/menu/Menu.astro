@@ -3,10 +3,10 @@ import HamburgerMenu from "./HamburgerMenu.vue";
 import { index } from "../../configs/site.json";
 
 const navs = index.navs;
+const { pathname } = Astro.url;
 
 const menuNavs = navs.map((nav) => {
     const href = nav.href;
-    const { pathname } = Astro.url;
     const subpath = decodeURI(pathname).match(/[^\/]+/g);
     const isActive = href === pathname || href === "/" + subpath?.[0];
     return {
@@ -21,9 +21,21 @@ const menuNavs = navs.map((nav) => {
         {
             menuNavs.map((nav) => (
                 <li>
-                    <a href={nav.href} class:list={[{ active: nav.isActive }]}>
-                        {nav.text}
-                    </a>
+                    {nav.children && nav.children.length > 0 ? (
+                        <a
+                            href={`${nav.href}${nav.children[0].href}`}
+                            class:list={[{ active: nav.isActive }]}
+                        >
+                            {nav.text}
+                        </a>
+                    ) : (
+                        <a
+                            href={nav.href}
+                            class:list={[{ active: nav.isActive }]}
+                        >
+                            {nav.text}
+                        </a>
+                    )}
                     <div
                         class="underline"
                         class:list={[{ active: nav.isActive }]}

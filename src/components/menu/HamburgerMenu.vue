@@ -26,6 +26,12 @@ const handleBtnClick = function () {
             <ul class="menu-list">
                 <li class="menu-item" v-for="(item) in navs">
                     <a :href="item.href" :key="item.href">{{ item.text }}</a>
+
+                    <div v-if="item.children && item.children.length > 0" class="submenu">
+                        <li v-for="(child) in item.children">
+                            <a :href="child.href" :key="child.href">{{ child.text }}</a>
+                        </li>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -102,5 +108,9 @@ const handleBtnClick = function () {
             color: inherit;
         }
         
+    }
+
+    .submenu{
+        margin-left: 20px;
     }
 </style>

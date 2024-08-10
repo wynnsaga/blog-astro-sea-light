@@ -7,5 +7,14 @@ import AboutMe from "../components/partial/AboutMe.astro";
     headline="ABOUT"
     paratext="城市的尽头，背投无边的烈日，一个和我一模一样的人正朝我走来。"
 >
-    <AboutMe />
+    <div class="content">
+        <AboutMe />
+    </div>
 </PageLayout>
+
+<style>
+    .content {
+        width: 80%;
+        margin: 0 auto;
+    }
+</style>

@@ -1,0 +1,57 @@
+---
+import Menu from "../menu/Menu.astro";
+
+interface Props {
+    title: string;
+    height?: string;
+    bgcolor?: string;
+    color?: string;
+}
+
+const {
+    title,
+    height = "fit-content",
+    bgcolor = "white",
+    color = "#3c3c3c",
+} = Astro.props;
+
+const styleVars = {
+    height: height,
+    color: color,
+    bgcolor: bgcolor,
+};
+---
+
+<header>
+    <h1><a href="/">{title}</a></h1>
+    <Menu />
+</header>
+
+<style define:vars={styleVars}>
+    header {
+        width: 100%;
+        height: var(--height);
+        background-color: var(--bgcolor);
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+    }
+
+    h1 {
+        text-wrap: nowrap;
+        overflow: hidden;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    @media screen and (min-width: 640px) {
+        header {
+            padding: 0 40px;
+        }
+    }
+</style>

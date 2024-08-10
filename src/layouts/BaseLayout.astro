@@ -1,0 +1,34 @@
+---
+import "../styles/global.scss";
+import { ViewTransitions } from "astro:transitions";
+import { site } from "../configs/site.json";
+import Footer from "../components/partial/Footer.astro";
+
+const { title, description, keywords } = site;
+---
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="title" content={title} />
+        <meta name="description" content={description} />
+        <meta name="keywords" content={keywords} />
+        <meta name="generator" content={Astro.generator} />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+        <title>{title}</title>
+        <!-- 标签页站点图标 -->
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+        <link href="/icons/css/fontawesome.css" rel="stylesheet" />
+        <link href="/icons/css/brands.css" rel="stylesheet" />
+        <link href="/icons/css/solid.css" rel="stylesheet" />
+        <ViewTransitions />
+    </head>
+
+    <body>
+        <slot />
+
+        <Footer />
+    </body>
+</html>

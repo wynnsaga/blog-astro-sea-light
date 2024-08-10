@@ -1,0 +1,58 @@
+---
+import "../styles/page.scss";
+import BaseLayout from "./BaseLayout.astro";
+import Header from "../components/partial/Header.astro";
+import PageCaption from "../components/partial/PageCaption.astro";
+import type { SubNav } from "../types";
+import { index } from "../configs/site.json";
+
+interface Props {
+    headline: string;
+    paratext: string;
+    subline?: string;
+    bgImage?: string;
+}
+
+const { headline, paratext, subline = "", bgImage = "" } = Astro.props;
+
+const { navs } = index;
+const pathname = Astro.url.pathname;
+const currNav = navs.find((nav) => nav.href === pathname);
+console.log(currNav);
+let submenu: SubNav[] = [];
+if (currNav && currNav.children) {
+    submenu = currNav.children;
+}
+---
+
+<BaseLayout>
+    <div class="page">
+        <Header title={index.title} />
+
+        <PageCaption
+            headline={headline}
+            subline={subline}
+            paratext={paratext}
+            bgImage={bgImage}
+        />
+
+        {
+            submenu.length > 0 && (
+                <div class="page-submenu">
+                    {submenu.map((menu) => (
+                        <a
+                            class="submenu-item"
+                            href={`${currNav?.href}${menu.href}`}
+                        >
+                            {menu.text}
+                        </a>
+                    ))}
+                </div>
+            )
+        }
+
+        <div class="page-content">
+            <slot />
+        </div>
+    </div>
+</BaseLayout>

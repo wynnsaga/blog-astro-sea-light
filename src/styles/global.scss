@@ -1,0 +1,44 @@
+@import 'animate.css';
+@import './post.scss';
+
+@font-face {
+    font-family: 'Alibaba Health';
+    src: url('/fonts/AlibabaHealthFont2.0CN-45R.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Alibaba Health';
+    src: url('/fonts/AlibabaHealthFont2.0CN-85B.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+:root {
+    --main-text-color: #373A3C;
+}
+
+* {
+    scrollbar-width: thin;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-size: 16px;
+    line-height: 1.4;
+    width: 100%;
+    letter-spacing: 1px;
+    color: var(--main-text-color);
+    font-family: 'Alibaba Health', sans-serif;
+    background-color: #F6F6F6;
+}

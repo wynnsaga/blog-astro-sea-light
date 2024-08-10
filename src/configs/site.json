@@ -1,0 +1,79 @@
+{
+    "site": {
+        "title": "海上灵光 - Wynn",
+        "description": "A Blog Site Powered by Astro",
+        "keywords": "Astro, Blog",
+        "copyright": "Copyright © 2024 Wynn",
+        "url": "https://www.wynn.host"
+    },
+    "index": {
+        "title": "海上灵光",
+        "navs": [
+            {
+                "text": "首页",
+                "href": "/"
+            },
+            {
+                "text": "博客",
+                "href": "/techblog",
+                "children": [
+                    {
+                        "text": "博客",
+                        "href": "/blog"
+                    },
+                    {
+                        "text": "归档",
+                        "href": "/archive"
+                    },
+                    {
+                        "text": "分类",
+                        "href": "/category"
+                    },
+                    {
+                        "text": "标签",
+                        "href": "/tag"
+                    },
+                    {
+                        "text": "项目",
+                        "href": "/project"
+                    }
+                ]
+            },
+            {
+                "text": "生活",
+                "href": "/lifestyle",
+                "children": [
+                    {
+                        "text": "随笔",
+                        "href": "/essay"
+                    },
+                    {
+                        "text": "旅行",
+                        "href": "/journey"
+                    },
+                    {
+                        "text": "点评",
+                        "href": "/remark"
+                    },
+                    {
+                        "text": "画廊",
+                        "href": "/gallary"
+                    },
+                    {
+                        "text": "读书",
+                        "href": "/book"
+                    },
+                    {
+                        "text": "电影",
+                        "href": "/movie"
+                    }
+                ]
+            },
+            {
+                "text": "关于",
+                "href": "/about"
+            }
+        ]
+    },
+    "socials": []
+}

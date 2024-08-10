@@ -1,0 +1,19 @@
+---
+import type { SubNav } from "../../types";
+interface Props {
+    navs: SubNav[];
+    height?: string;
+}
+
+const { navs, height = "fit-content" } = Astro.props;
+---
+
+<div class="sub-menu">
+    {navs.map((nav) => <li>{nav.text}</li>)}
+</div>
+
+<style lang="scss" define:vars={{ height }}>
+    .sub-menu {
+        height: var(--height);
+    }
+</style>

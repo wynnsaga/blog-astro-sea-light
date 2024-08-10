@@ -1,0 +1,14 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "moduleResolution": "node",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "jsxImportSource": "vue",
+    "noUnusedLocals": false,
+    "esModuleInterop": true
+  },
+  "include": [
+    "src/**/*",
+    "types.d.ts"
+  ]
+}

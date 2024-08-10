@@ -1,0 +1,40 @@
+.post-content {
+
+    line-height: 1.75;
+
+    img {
+        width: 100%;
+    }
+
+    blockquote {
+        border-left: 4px solid #C5CAE9;
+        margin: 1.2rem 2px;
+        font-size: .95rem;
+        font-style: italic;
+        font-weight: lighter;
+        color: #3F51B5;
+        padding-left: 10px;
+    }
+
+    // 行内代码
+    code {
+        background-color: #F2F1F1;
+        padding: 1px 4px;
+        border-radius: 4px;
+    }
+
+    // 代码段
+    pre {
+        padding: 1em;
+        border-radius: 8px;
+        margin: 2rem 2px;
+        line-height: 1.25;
+        font-family: 'Consolas', 'Courier New', Courier, monospace;
+
+        code {
+            all: unset;
+            text-wrap: wrap;
+        }
+    }
+
+}

@@ -1,0 +1,27 @@
+---
+interface Props {
+    height?: string;
+}
+
+const { height = "160px" } = Astro.props;
+---
+
+<footer>
+    <div>Powered by Astro. Copyright © 2023 - 2024 Wynn</div>
+</footer>
+
+<style lang="scss" define:vars={{ height }}>
+    footer {
+        width: 100%;
+        height: var(--height);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.85rem;
+        flex-wrap: wrap;
+
+        & > div {
+            text-wrap: wrap;
+        }
+    }
+</style>

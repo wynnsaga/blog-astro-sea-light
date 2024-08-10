@@ -1,0 +1,76 @@
+---
+import ViewTransitions from "astro/components/ViewTransitions.astro";
+import { site } from "../configs/site.json";
+
+const { title, description, keywords } = site;
+---
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="title" content={title} />
+        <meta name="description" content={description} />
+        <meta name="keywords" content={keywords} />
+        <meta name="generator" content={Astro.generator} />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+        <title>{title}</title>
+
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+        <link href="/icons/css/fontawesome.css" rel="stylesheet" />
+        <link href="/icons/css/brands.css" rel="stylesheet" />
+        <link href="/icons/css/solid.css" rel="stylesheet" />
+        <ViewTransitions />
+
+        <style>
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+                width: 100vw;
+                height: 100vh;
+                background-image: url("../assets/images/page-not-found.svg");
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .text {
+                font-size: 3rem;
+                font-weight: bold;
+                color: #7ca4a1;
+                position: relative;
+                transform: translateY(-100%);
+            }
+
+            a {
+                text-underline-offset: 10px;
+                color: inherit;
+            }
+
+            a:hover {
+                color: #ff6884;
+            }
+
+            @media screen and (max-width: 640px) {
+                .text {
+                    margin: 0 50px;
+                    background-color: rgba(255, 255, 255, 0.8);
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="page">
+            <div class="text">
+                <span>这里好像什么都没有，</span>
+                <a href="/">回去看看吧~</a>
+            </div>
+        </div>
+    </body>
+</html>

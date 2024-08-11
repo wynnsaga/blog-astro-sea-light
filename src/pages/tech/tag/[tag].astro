@@ -36,7 +36,9 @@ const { tag } = Astro.params;
             {
                 posts.map((post) => (
                     <li>
-                        <a href={`/post/${post.slug}`}>{post.data.title}</a>
+                        <a href={`/tech/post/${post.slug}`}>
+                            {post.data.title}
+                        </a>
                     </li>
                 ))
             }

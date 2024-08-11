@@ -118,6 +118,12 @@ function obtainPostsWithTag(posts: Post[], tag: string) {
     );
 }
 
+function obtainPostsWithCategory(posts: Post[], cat: string) {
+    return posts.filter((post) =>
+        post.data.categories.includes(cat),
+    );
+}
+
 export {
     fetchAll,
     fetchDrafts,
@@ -132,4 +138,5 @@ export {
     classifyPinAndDescByDate,
 
     obtainPostsWithTag,
+    obtainPostsWithCategory
 };

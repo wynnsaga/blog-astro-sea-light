@@ -1,21 +1,27 @@
 ---
 import PageLayout from "../../layouts/PageLayout.astro";
-import TagItem from "../../components/partial/TagItem.astro";
+import CategoryItem from "../../components/partial/CategoryItem.astro";
 import { fetchPublications } from "../../scripts/post-script";
 
 const basepath = Astro.url.pathname;
 const publications = await fetchPublications();
-const tags = [...new Set(publications.map((post) => post.data.tags).flat())];
+const cats = [
+    ...new Set(publications.map((post) => post.data.categories).flat()),
+];
 ---
 
 <PageLayout
     headline="TECHBLOG"
-    subline="标签"
+    subline="分类"
     bgImage="/imgs/caption-bgs/page-caption-blog.svg"
-    paratext="早晨推开门，地上、石头上、树上落了一层薄霜。"
+    paratext="粉红缎匹张开，恍惚香气流溢。"
 >
     <div class="tag">
-        {tags.map((tag) => <TagItem text={tag} href={`${basepath}/${tag}`} />)}
+        {
+            cats.map((cat) => (
+                <CategoryItem text={cat} href={`${basepath}/${cat}`} />
+            ))
+        }
     </div>
 </PageLayout>
 

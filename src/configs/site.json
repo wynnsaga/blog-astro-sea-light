@@ -26,6 +26,10 @@
                         "href": "/archive"
                     },
                     {
+                        "text": "分类",
+                        "href": "/category"
+                    },
+                    {
                         "text": "标签",
                         "href": "/tag"
                     },

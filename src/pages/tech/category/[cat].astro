@@ -2,34 +2,33 @@
 import PageLayout from "../../../layouts/PageLayout.astro";
 import {
     fetchPublications,
-    obtainPostsWithTag,
+    obtainPostsWithCategory,
 } from "../../../scripts/post-script";
 
 export async function getStaticPaths() {
     const publications = await fetchPublications();
-
-    const uniqueTags = [
-        ...new Set(publications.map((post) => post.data.tags).flat()),
+    const uniqueCats = [
+        ...new Set(publications.map((post) => post.data.categories).flat()),
     ];
-
-    return uniqueTags.map((tag) => {
-        const filteredPosts = obtainPostsWithTag(publications, tag);
+    // 筛选出符合tag的推文
+    return uniqueCats.map((cat) => {
+        const filteredPosts = obtainPostsWithCategory(publications, cat);
         return {
-            params: { tag },
+            params: { cat },
             props: { posts: filteredPosts },
         };
     });
 }
 
 const { posts } = Astro.props;
-const { tag } = Astro.params;
+const { cat } = Astro.params;
 ---
 
 <PageLayout
     headline="TAG"
-    subline={tag}
+    subline={cat}
     bgImage="/imgs/caption-bgs/page-caption-blog.svg"
-    paratext="早晨推开门，地上、石头上、树上落了一层薄霜。"
+    paratext="粉红缎匹张开，恍惚香气流溢。"
 >
     <div class="content">
         <ul>

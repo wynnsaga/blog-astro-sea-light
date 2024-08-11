@@ -23,8 +23,6 @@ export async function getStaticPaths() {
 
 const { posts } = Astro.props;
 const { tag } = Astro.params;
-
-console.log(posts.map((p) => p.data.title));
 ---
 
 <PageLayout

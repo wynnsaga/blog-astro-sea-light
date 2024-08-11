@@ -42,3 +42,13 @@ body {
     font-family: 'Alibaba Health', sans-serif;
     background-color: #F6F6F6;
 }
+
+@media screen and (max-width: 640px) {
+
+    html,
+    body {
+        width: 100%;
+        overflow-x: hidden;
+        background-color: rebeccapurple;
+    }
+}

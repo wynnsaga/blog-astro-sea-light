@@ -85,11 +85,10 @@ const handleBtnClick = function () {
         right: 0;
         background-color: #7ca4a1;
         display: flex;
-        width: 40vw;
+        width: 0;
         height: 100vh;
         flex-direction: column;
         align-items: flex-end;
-        transform: translateX(110%);
         opacity: 0;
         transition: all 1s ease-in-out;
         visibility: hidden;
@@ -97,7 +96,7 @@ const handleBtnClick = function () {
     }
 
     .menu__open {
-        transform: translateX(0);
+        width: 40vw;
         opacity: 1;
         visibility: visible;
     }
@@ -130,5 +129,9 @@ const handleBtnClick = function () {
 
     .submenu{
         margin-left: 20px;
+    }
+
+    a{
+        text-wrap: nowrap;
     }
 </style>

@@ -15,11 +15,11 @@
             },
             {
                 "text": "博客",
-                "href": "/techblog",
+                "href": "/tech",
                 "children": [
                     {
-                        "text": "博客",
-                        "href": "/blog"
+                        "text": "文章",
+                        "href": "/post"
                     },
                     {
                         "text": "归档",

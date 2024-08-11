@@ -31,7 +31,7 @@ const { archive } = Astro.props;
                         <div class="line" />
                     </div>
                     <div class="post">
-                        <a href={`/post/${p.slug}`}>{p.data.title}</a>
+                        <a href={`/tech/post/${p.slug}`}>{p.data.title}</a>
                         <span style="font-size: 0.6rem;">
                             {moment(p.data.date.publish).format("MM-DD")}
                         </span>

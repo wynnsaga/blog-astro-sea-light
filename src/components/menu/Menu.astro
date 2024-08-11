@@ -3,12 +3,12 @@ import HamburgerMenu from "./HamburgerMenu.vue";
 import { index } from "../../configs/site.json";
 
 const navs = index.navs;
-const { pathname } = Astro.url;
+const currPathname = Astro.url.pathname;
 
 const menuNavs = navs.map((nav) => {
     const href = nav.href;
-    const subpath = decodeURI(pathname).match(/[^\/]+/g);
-    const isActive = href === pathname || href === "/" + subpath?.[0];
+    const subpath = decodeURI(currPathname).match(/[^\/]+/g);
+    const isActive = href === currPathname || href === "/" + subpath?.[0];
     return {
         ...nav,
         isActive,

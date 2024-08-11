@@ -1,5 +1,11 @@
 ---
 import PageLayout from "../../layouts/PageLayout.astro";
+import TagItem from "../../components/partial/TagItem.astro";
+import { fetchPublications } from "../../scripts/post-script";
+
+const basepath = Astro.url.pathname;
+const publications = await fetchPublications();
+const tags = [...new Set(publications.map((post) => post.data.tags).flat())];
 ---
 
 <PageLayout
@@ -8,5 +14,16 @@ import PageLayout from "../../layouts/PageLayout.astro";
     bgImage="/imgs/caption-bgs/page-caption-blog.svg"
     paratext="鸡零狗碎，鸡零狗碎"
 >
-    <div></div>
+    <div class="tag">
+        {tags.map((tag) => <TagItem text={tag} href={`${basepath}/${tag}`} />)}
+    </div>
 </PageLayout>
+
+<style>
+    .tag {
+        width: 80%;
+        margin: 20px auto;
+        display: flex;
+        flex-wrap: wrap;
+    }
+</style>

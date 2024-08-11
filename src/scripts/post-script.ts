@@ -112,6 +112,12 @@ function obtainArchives(posts: Post[]) {
     return array;
 }
 
+function obtainPostsWithTag(posts: Post[], tag: string) {
+    return posts.filter((post) =>
+        post.data.tags.includes(tag),
+    );
+}
+
 export {
     fetchAll,
     fetchDrafts,
@@ -124,4 +130,6 @@ export {
     obtainYears,
     obtainArchives,
     classifyPinAndDescByDate,
+
+    obtainPostsWithTag,
 };

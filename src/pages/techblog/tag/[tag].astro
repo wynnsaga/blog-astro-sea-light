@@ -1,0 +1,79 @@
+---
+import PageLayout from "../../../layouts/PageLayout.astro";
+import {
+    fetchPublications,
+    obtainPostsWithTag,
+} from "../../../scripts/post-script";
+
+export async function getStaticPaths() {
+    const publications = await fetchPublications();
+
+    const uniqueTags = [
+        ...new Set(publications.map((post) => post.data.tags).flat()),
+    ];
+
+    return uniqueTags.map((tag) => {
+        const filteredPosts = obtainPostsWithTag(publications, tag);
+        return {
+            params: { tag },
+            props: { posts: filteredPosts },
+        };
+    });
+}
+
+const { posts } = Astro.props;
+const { tag } = Astro.params;
+
+console.log(posts.map((p) => p.data.title));
+---
+
+<PageLayout
+    headline="TAG"
+    subline={tag}
+    bgImage="/imgs/caption-bgs/page-caption-blog.svg"
+    paratext="鸡零狗碎，鸡零狗碎"
+>
+    <div class="content">
+        <ul>
+            {
+                posts.map((post) => (
+                    <li>
+                        <a href={`/post/${post.slug}`}>{post.data.title}</a>
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
+</PageLayout>
+
+<style>
+    .content {
+        width: 80%;
+        margin: 20px auto;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: underline;
+        text-decoration-style: wavy;
+        text-decoration-color: #2f2e41;
+        text-underline-offset: 5px;
+    }
+
+    li {
+        margin: 20px 0;
+    }
+
+    @media screen and (min-width: 640px) {
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        a:hover {
+            text-decoration: dashed;
+            text-decoration-line: underline;
+            text-underline-offset: 3px;
+        }
+    }
+</style>

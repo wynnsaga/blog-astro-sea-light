@@ -1,0 +1,35 @@
+---
+interface Props {
+    text: string;
+    href: string;
+    color?: string;
+    bgColor?: string;
+}
+const { text, href, color = "black", bgColor = "white" } = Astro.props;
+---
+
+<div style=`background-color: ${bgColor}`>
+    <i class="fa-solid fa-hashtag" style=`color: ${color}`></i>
+    <a href={href} style=`color: ${color}`>{text}</a>
+</div>
+
+<style>
+    div {
+        width: fit-content;
+        border-radius: 5px;
+        padding: 5px 20px;
+        margin: 5px;
+        text-wrap: nowrap;
+        color: #3f3d56;
+    }
+
+    a {
+        text-decoration: none;
+        text-wrap: nowrap;
+    }
+
+    a:hover {
+        text-decoration: underline;
+        text-underline-offset: 2px;
+    }
+</style>

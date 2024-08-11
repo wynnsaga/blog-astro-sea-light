@@ -20,7 +20,7 @@ const currPathname = Astro.url.pathname; // '/techblog/blog'
 const routes = decodeURI(currPathname).match(/[^\/]+/g); // [ 'techblog', 'blog' ]
 
 let submenu: any[] = [];
-if (routes && routes.length == 2) {
+if (routes && routes.length > 1) {
     const pRoute = `/${routes[0]}`;
     const currNav = navs.find((nav) => nav.href === pRoute);
     if (currNav && currNav.children) {
@@ -28,7 +28,7 @@ if (routes && routes.length == 2) {
             return {
                 text: child.text,
                 href: `${currNav.href}${child.href}`,
-                isActive: currPathname === pRoute + child.href,
+                isActive: currPathname.includes(pRoute + child.href),
             };
         });
     }

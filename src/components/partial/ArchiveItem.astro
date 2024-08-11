@@ -1,0 +1,131 @@
+---
+import moment from "moment";
+import { type Archive } from "../../types";
+
+interface Props {
+    archive: Archive;
+}
+
+const { archive } = Astro.props;
+---
+
+<div class="archive-item">
+    <ul>
+        <li>
+            <div class="left year">{archive.year}</div>
+            <div class="count">
+                共 {archive.count} 篇
+            </div>
+        </li>
+        <li>
+            <div class="left">
+                <div class="line" style="height: 10px;"></div>
+            </div>
+        </li>
+        {
+            archive.posts.map((p) => (
+                <li>
+                    <div class="left timeline">
+                        <div class="line" />
+                        <div class="dot" />
+                        <div class="line" />
+                    </div>
+                    <div class="post">
+                        <a href={`/post/${p.slug}`}>{p.data.title}</a>
+                        <span style="font-size: 0.6rem;">
+                            {moment(p.data.date.publish).format("MM-DD")}
+                        </span>
+                    </div>
+                </li>
+            ))
+        }
+        <li>
+            <div class="left">
+                <div class="line" style="height: 10px;"></div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<style lang="scss">
+    ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    li {
+        display: grid;
+        grid-template-columns: 1fr 9fr;
+        list-style: none;
+        margin: 0;
+
+        & > .left {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
+    .year {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid #515659;
+        text-align: center;
+        border-radius: 20px;
+        color: #515659;
+        padding: 0 10px;
+    }
+
+    .count {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        border: 2px solid transparent;
+        font-size: 0.65rem;
+        text-decoration-line: underline;
+        text-underline-offset: 2px;
+    }
+
+    .timeline {
+        position: relative;
+        flex-shrink: 0;
+    }
+    .line {
+        width: 5px;
+        height: 100%;
+        background-color: #ebebeb;
+    }
+    .dot {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        box-sizing: content-box;
+        border: 4px white solid;
+        border-radius: 50%;
+        background-color: #99a3a1;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+    }
+
+    .post {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+
+        a {
+            color: #333;
+            text-decoration: none;
+            margin-left: 0;
+            padding: 0 20px;
+            transition: all 0.5s ease-in-out;
+
+            &:hover {
+                color: #7ca4a1;
+                margin-left: 15px;
+            }
+        }
+    }
+</style>

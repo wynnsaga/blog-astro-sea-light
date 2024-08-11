@@ -20,7 +20,7 @@ console.log(subline);
     style=`background-image: url(${bgImage});`
 >
     <div class="avatar-box">
-        <Image src={Avatar} alt="avatar" class="avatar" />
+        <Image src={Avatar} alt="avatar" class="avatar" loading={"eager"} />
         <a href="#">
             {headline}
             {subline && ` - ${subline}`}

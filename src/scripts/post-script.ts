@@ -91,6 +91,27 @@ function classifyPinAndDescByDate(posts: Post[]): Post[] {
     return _.orderBy(posts, ['data.pin', 'data.date.publish'], ['desc', 'desc']);
 }
 
+// 获取归档
+function obtainArchives(posts: Post[]) {
+    const array: Archive[] = [];
+    const years = obtainYears(posts);
+
+    years.forEach((year) => {
+        const screenedPosts = posts.filter((p) => {
+            return p.data.date.publish.getFullYear() === year;
+        });
+
+        array.push({
+            year: year,
+            count: screenedPosts.length,
+            posts: sortByDate(screenedPosts)
+        })
+
+    });
+
+    return array;
+}
+
 export {
     fetchAll,
     fetchDrafts,
@@ -101,5 +122,6 @@ export {
 
     sortByDate,
     obtainYears,
-    classifyPinAndDescByDate
+    obtainArchives,
+    classifyPinAndDescByDate,
 };

@@ -1,5 +1,10 @@
 ---
 import PageLayout from "../../layouts/PageLayout.astro";
+import ArchiveItem from "../../components/partial/ArchiveItem.astro";
+import { fetchPublications, obtainArchives } from "../../scripts/post-script";
+
+const publications = await fetchPublications();
+const archiveEntries = obtainArchives(publications);
 ---
 
 <PageLayout
@@ -8,5 +13,25 @@ import PageLayout from "../../layouts/PageLayout.astro";
     bgImage="/imgs/caption-bgs/page-caption-blog.svg"
     paratext="鸡零狗碎，鸡零狗碎"
 >
-    <div></div>
+    <div class="archive">
+        {archiveEntries.map((entry) => <ArchiveItem archive={entry} />)}
+    </div>
 </PageLayout>
+
+<style>
+    .archive {
+        font-size: 0.75rem;
+        width: 80%;
+        margin: auto;
+        padding: 50px 0;
+    }
+
+    @media screen and (min-width: 640px) {
+        .archive {
+            width: 80%;
+            margin: auto;
+            padding: 50px 0;
+            font-size: 0.85rem;
+        }
+    }
+</style>

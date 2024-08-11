@@ -1,5 +1,13 @@
 ---
 import PageLayout from "../../layouts/PageLayout.astro";
+import BlogItem from "../../components/partial/BlogItem.astro";
+import {
+    fetchPublications,
+    classifyPinAndDescByDate,
+} from "../../scripts/post-script";
+
+const posts = await fetchPublications();
+const postview = classifyPinAndDescByDate(posts);
 ---
 
 <PageLayout
@@ -8,5 +16,24 @@ import PageLayout from "../../layouts/PageLayout.astro";
     bgImage="/imgs/caption-bgs/page-caption-blog.svg"
     paratext="鸡零狗碎，鸡零狗碎"
 >
-    <div></div>
+    <div class="blog">
+        {postview.map((p) => <BlogItem post={p} />)}
+    </div>
 </PageLayout>
+
+<style>
+    .blog {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+        padding: 30px 0;
+    }
+
+    @media screen and (min-width: 640px) {
+        .blog {
+            padding: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        }
+    }
+</style>

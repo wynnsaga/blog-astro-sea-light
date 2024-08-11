@@ -1,0 +1,135 @@
+---
+import {
+    getRandomColor,
+    getRandomScaleColor,
+} from "../../scripts/style-script";
+import { type Post } from "../../types";
+
+interface Props {
+    post: Post;
+}
+
+const { post } = Astro.props;
+const bgcolor = getRandomScaleColor();
+---
+
+<div class="blog-item">
+    <a href={`/post/${post.slug}`}>
+        <div class="image">
+            <div class="state">
+                {
+                    post.data.draft && (
+                        <i
+                            class="fa-solid fa-pen-ruler state-item"
+                            style="color: white;"
+                            title="草稿"
+                        />
+                    )
+                }
+                {
+                    post.data.pin && (
+                        <i
+                            class="fa-solid fa-thumbtack fa-rotate-by state-item"
+                            style="color: #3F3D56; --fa-rotate-angle: 45deg;"
+                            title="置顶"
+                        />
+                    )
+                }
+            </div>
+            <img src={post.data.image} alt="blog image" />
+        </div>
+    </a>
+    <div class="title">
+        <a href={`/post/${post.slug}`}>{post.data.title}</a>
+    </div>
+    <div class="tags">
+        {
+            post.data.tags.map((tag) => (
+                <div
+                    class="tag"
+                    style={`background-color: ${getRandomColor()};`}
+                >
+                    <a href={`/tag/${tag}`}>{tag}</a>
+                </div>
+            ))
+        }
+    </div>
+</div>
+
+<style lang="scss" define:vars={{ bgcolor }}>
+    .blog-item {
+        width: 300px;
+        margin: auto;
+        & > div,
+        a {
+            margin: 10px 0;
+        }
+    }
+
+    .image {
+        position: relative;
+        width: 100%;
+        height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--bgcolor);
+        border: 1px solid #f0f4f4;
+        border-radius: 10px;
+
+        .state {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 10px;
+            font-size: smaller;
+
+            .state-item {
+                margin: 0 3px;
+            }
+        }
+
+        img {
+            width: 100px;
+            height: 100px;
+            overflow: hidden;
+            object-fit: contain;
+        }
+    }
+
+    .title {
+        width: 100%;
+        text-wrap: wrap;
+        font-weight: bold;
+        text-align: center;
+
+        & > a {
+            color: #3c3c3c;
+            text-decoration: none;
+        }
+
+        & > a:hover {
+            color: #3c3c3c;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+    }
+
+    .tags {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+
+        .tag {
+            padding: 8px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+
+            & > a {
+                color: white;
+                text-decoration: none;
+            }
+        }
+    }
+</style>

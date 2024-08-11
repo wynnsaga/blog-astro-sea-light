@@ -80,7 +80,7 @@ const handleBtnClick = function () {
     }
 
     .menu {
-        position: absolute;
+        position: fixed;
         top: 0;
         right: 0;
         background-color: #7ca4a1;
@@ -90,8 +90,10 @@ const handleBtnClick = function () {
         flex-direction: column;
         align-items: flex-end;
         opacity: 0;
-        transition: all 1s ease-in-out;
         visibility: hidden;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        transition: all 1s ease-in-out;
         z-index: 300;
     }
 

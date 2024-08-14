@@ -1,0 +1,15 @@
+---
+import { fetchDrafts } from "../scripts/post-script";
+
+const drafts = await fetchDrafts();
+---
+
+<div>
+    {
+        drafts.map(
+            (d)=>(
+                <div>{d.data.title}</div>
+            )
+        )
+    }
+</div>

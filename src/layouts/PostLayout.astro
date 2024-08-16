@@ -8,6 +8,7 @@ import BackToTop from "../components/misc/BackToTop.vue"
   <div class="post-left">
     <slot name="left" />
   </div>
+
   <div class="post-main">
     <div class="post-header">
       <slot name="header" />
@@ -20,6 +21,7 @@ import BackToTop from "../components/misc/BackToTop.vue"
       <slot name="footer" />
     </div>
   </div>
+  
   <div class="post-right">
     <slot name="right" />
   </div>
@@ -40,6 +42,7 @@ import BackToTop from "../components/misc/BackToTop.vue"
       background-color: white;
       border-radius: 4px;
       padding: 40px;
+      width: 100%;
 
       hr {
         border: 1px dashed lightgrey;
@@ -56,6 +59,7 @@ import BackToTop from "../components/misc/BackToTop.vue"
   }
 
   .post-content {
+    width: 100%;
   }
 
   .post-footer {

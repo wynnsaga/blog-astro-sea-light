@@ -25,16 +25,34 @@
 
     // 代码段
     pre {
-        padding: 1em;
         border-radius: 8px;
-        margin: 2rem 2px;
         line-height: 1.25;
         font-family: 'Consolas', 'Courier New', Courier, monospace;
+        max-width: 100%;
+        padding: 1em;
+        
 
-        code {
-            all: unset;
+        code{
+            background-color: inherit;
+            font-family: inherit;
+        }
+
+        code .line {
+            background-color: inherit;
             text-wrap: wrap;
         }
+    }
+
+}
+
+@media  screen and (max-width: 640px) {
+     // 代码段
+     pre {
+        border-radius: 8px;
+        font-family: 'Consolas', 'Courier New', Courier, monospace;
+        max-width: 100%;
+        padding: 1r em;
+        font-size: 0.75rem;
     }
 
 }

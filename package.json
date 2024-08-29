@@ -11,6 +11,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/mdx": "^3.1.4",
     "@astrojs/vue": "^4.5.0",
     "@astropub/icons": "^0.2.0",
     "animate.css": "^4.1.1",

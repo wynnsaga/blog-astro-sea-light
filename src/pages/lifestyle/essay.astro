@@ -1,5 +1,9 @@
 ---
 import PageLayout from "../../layouts/PageLayout.astro";
+import { getCollection } from "astro:content";
+
+const essays = await getCollection('essays');
+console.log('essay', essays)
 ---
 
 <PageLayout
@@ -8,5 +12,31 @@ import PageLayout from "../../layouts/PageLayout.astro";
     bgImage="/imgs/caption-bgs/page-caption-life.svg"
     paratext="笔随心走，无甚拘束"
 >
-    <div></div>
+    <div class="essay-list">
+        {
+            essays.map((essay) => (
+                <div class="essay-item">
+                    <a href={`/lifestyle/essay/${essay.slug}`}>
+                        <h2>{essay.data.title}</h2>
+                        <p class="essay-body">
+                            {
+                                essay.body.replaceAll(" ", "\n")
+                            }
+                        </p>
+                    </a>
+                </div>
+            ))
+        }
+    </div>
 </PageLayout>
+
+<style>
+    .essay-list{
+        
+    }
+
+    .essay-item{
+        width: 200px;
+        text-wrap: wrap;
+    }
+</style>

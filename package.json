@@ -11,11 +11,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^3.1.4",
+    "@astrojs/mdx": "^3.1.5",
     "@astrojs/vue": "^4.5.0",
     "@astropub/icons": "^0.2.0",
     "animate.css": "^4.1.1",
-    "astro": "^4.12.1",
+    "astro": "^4.15.4",
     "astro-particles": "^2.10.0",
     "chroma-js": "^2.6.0",
     "lodash": "^4.17.21",

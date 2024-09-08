@@ -2,8 +2,7 @@
 import PageLayout from "../../layouts/PageLayout.astro";
 import { getCollection } from "astro:content";
 
-const essays = await getCollection('essays');
-console.log('essay', essays)
+const essays = await getCollection("essays");
 ---
 
 <PageLayout
@@ -16,14 +15,14 @@ console.log('essay', essays)
         {
             essays.map((essay) => (
                 <div class="essay-item">
-                    <a href={`/lifestyle/essay/${essay.slug}`}>
+                    <a
+                        class="essay-title"
+                        href={`/lifestyle/essay/${essay.slug}`}
+                    >
                         <h2>{essay.data.title}</h2>
-                        <p class="essay-body">
-                            {
-                                essay.body.replaceAll(" ", "\n")
-                            }
-                        </p>
                     </a>
+                    <pre class="essay-body">{essay.body}</pre>
+                    <hr />
                 </div>
             ))
         }
@@ -31,12 +30,57 @@ console.log('essay', essays)
 </PageLayout>
 
 <style>
-    .essay-list{
-        
+    .essay-list {
+        padding: 20px 0;
+        column-count: 1;
     }
-
-    .essay-item{
+    .essay-item {
+        margin: 0 auto;
         width: 200px;
         text-wrap: wrap;
+        color: black;
+        font-family: "KaiTi", "楷体", "serif";
+    }
+
+    .essay-title {
+        color: black;
+        text-decoration: none;
+        font-size: 0.95rem;
+    }
+
+    .essay-body {
+        font-size: 0.95rem;
+        font-family: inherit;
+    }
+
+    .continue {
+        color: #ff6884;
+        text-decoration: none;
+    }
+
+    hr {
+        border: none;
+        border-top: 1px dashed lightgray;
+    }
+
+    @media screen and (min-width: 640px) {
+        .essay-list {
+            column-count: 3;
+        }
+        .essay-item {
+            width: calc(100% / 3);
+            break-inside: avoid-column;
+            color: black;
+            text-wrap: wrap;
+            font-family: "KaiTi", "楷体", "serif";
+        }
+
+        .essay-body {
+            font-family: inherit;
+        }
+
+        hr {
+            display: none;
+        }
     }
 </style>

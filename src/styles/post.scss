@@ -3,7 +3,9 @@
     line-height: 1.75;
 
     img {
-        width: 100%;
+        display: block;
+        width: fit-content;
+        max-width: 100%;
     }
 
     blockquote {

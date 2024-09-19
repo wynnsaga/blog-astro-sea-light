@@ -1,5 +1,19 @@
 ---
 import PageLayout from "../../layouts/PageLayout.astro";
+import { getCollection } from "astro:content";
+import books from "../../configs/books.json";
+
+const reactions = await getCollection("books");
+
+
+function getBookReactions(bookName: string){
+    return reactions.filter((reaction) => {
+        return reaction.data.relation === bookName;
+    });
+}
+
+const res = getBookReactions("Harry Potter and the Philosopher's Stone");
+console.log(res);
 ---
 
 <PageLayout
@@ -8,5 +22,121 @@ import PageLayout from "../../layouts/PageLayout.astro";
     bgImage="/imgs/caption-bgs/page-caption-life.svg"
     paratext="因地不真，果招纡曲"
 >
-    <div></div>
+    <div class="book-list">
+        {
+            books.map((book) => {
+                return (
+                    <div class="book">
+                        <div class="book-self">
+                            <img class="book-cover" src={book.cover} alt={book.name} />
+                            <div class="book-info">
+                                <h3>{book.name}</h3>
+                                <p>{book.author}</p>
+                                <p>{book.year}</p>
+                                <p>{book.genre}</p>
+                            </div>
+                        </div>
+                        <span>REACTION</span>
+                        <div class="book-reaction">
+                            {
+                                getBookReactions(book.name).map((reaction) => {
+                                    return (
+                                        <div class="reaction">
+                                            <p>{reaction.data.title}</p>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
+                    </div>
+                )
+            })
+        }
+    </div>
 </PageLayout>
+
+<style lang="scss">
+.book-list{
+    margin: 0 auto;
+    padding-bottom: 20px;
+    width: 80%;
+}
+
+.book{
+    margin: 10px 0;
+    padding: 10px;
+    border: 2px solid #F0F4F4;
+    border-radius: 10px;
+    
+    .book-self{
+        display: flex;
+        align-items: center;
+
+        .book-cover{
+            width: 100px;
+            height: 150px;
+        }
+
+        .book-info{
+            margin-left: 20px;
+        }
+    }
+
+    span{
+        width: fit-content;
+        font-weight: bold;
+        color: #FF6893;
+    }
+
+    .book-reaction{
+        background-color: #F0F4F4;
+    }
+}
+
+@media screen and (min-width: 640px) {
+    .book{
+        display: flex;
+        height: 200px;
+        margin: 10px 0;
+        padding: 10px;
+        border: 2px solid transparent;
+        border-radius: 10px;
+        transition: border .5s ease-in-out, background-color .5s ease-in-out;
+
+        .book-self{
+            display: flex;
+            align-items: center;
+            width: 40%;
+
+            .book-cover{
+                width: 100px;
+                height: 150px;
+            }
+
+            .book-info{
+                margin-left: 20px;
+            }
+
+        }
+
+        span{
+            writing-mode: vertical-lr;
+            width: fit-content;
+            font-weight: bold;
+            color: #FF6893;
+            text-align: center;
+            transform: rotateZ(180deg);
+        }
+
+        .book-reaction{
+            flex-grow: 1;
+        }
+    }
+
+    .book:hover{
+        border: 2px solid #F0F4F4;
+        background-color: #F0F4F4;
+    }
+}
+</style>
+

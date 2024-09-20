@@ -44,12 +44,12 @@ const bgcolor = getRandomScaleColor();
     </div>
     <div class="tags">
         {
-            post.data.tags.map((tag) => (
+            post.data.tags.map((tag:any) => (
                 <div
                     class="tag"
                     style={`background-color: ${getRandomColor()};`}
                 >
-                    <a href={`/tag/${tag}`}>{tag}</a>
+                    <a href={`/tech/tag/${tag}`}>{tag}</a>
                 </div>
             ))
         }

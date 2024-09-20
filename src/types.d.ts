@@ -42,6 +42,7 @@ export interface Tag {
 
 // 推文
 export type Post = CollectionEntry<'posts'>;
+export type BookReaction = CollectionEntry<'books'>;
 
 // 排序方式
 export type Seq = 'asc' | 'desc'

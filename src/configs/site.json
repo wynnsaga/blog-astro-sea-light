@@ -10,11 +10,11 @@
         "title": "海上灵光",
         "navs": [
             {
-                "text": "首页",
+                "text": "HOME",
                 "href": "/"
             },
             {
-                "text": "博客",
+                "text": "TECH",
                 "href": "/tech",
                 "children": [
                     {
@@ -40,7 +40,7 @@
                 ]
             },
             {
-                "text": "生活",
+                "text": "LIFE",
                 "href": "/lifestyle",
                 "children": [
                     {
@@ -62,7 +62,7 @@
                 ]
             },
             {
-                "text": "关于",
+                "text": "ABOUT",
                 "href": "/about",
                 "type": "page"
             }

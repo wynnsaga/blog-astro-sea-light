@@ -14,18 +14,20 @@ const essays = await getCollection("essays");
     <div class="essay-list">
         {
             essays.map((essay) => (
+                <hr/>
                 <div class="essay-item">
-                    <a
-                        class="essay-title"
-                        href={`/lifestyle/essay/${essay.slug}`}
-                    >
-                        <h2>{essay.data.title}</h2>
-                    </a>
+                    <div class="essay-title">
+                        <a href={`/lifestyle/essay/${essay.slug}`} >{essay.data.title}</a>
+                        {
+                            essay.data.author == "AI" && 
+                            <i class="fa-solid fa-robot" style="color: #DFDFDF;" title={essay.data.description}></i>
+                        }
+                    </div>
                     <pre class="essay-body">{essay.body}</pre>
-                    <hr />
                 </div>
             ))
         }
+        <hr/>
     </div>
 </PageLayout>
 
@@ -33,24 +35,24 @@ const essays = await getCollection("essays");
     .essay-list {
         padding: 20px 0;
         column-count: 1;
+        padding: 10px 20px;
     }
     .essay-item {
-        margin: 0 auto;
-        width: 200px;
+        margin: 20px auto;
         text-wrap: wrap;
         color: black;
         font-family: "KaiTi", "楷体", "serif";
     }
 
     .essay-title {
-        color: black;
-        text-decoration: none;
-        font-size: 0.95rem;
+        font-size: 1.25rem;
+        font-weight: bold;
     }
 
     .essay-body {
         font-size: 0.95rem;
         font-family: inherit;
+        text-wrap: wrap ;
     }
 
     .continue {
@@ -65,10 +67,15 @@ const essays = await getCollection("essays");
 
     @media screen and (min-width: 640px) {
         .essay-list {
-            column-count: 3;
+            width: 80%;
+            margin: 0 auto;
         }
-        .essay-item {
-            width: calc(100% / 3);
+
+        a:hover{
+            color: #ff6884;
+        }
+        /* .essay-item {
+            width: 200px;
             break-inside: avoid-column;
             color: black;
             text-wrap: wrap;
@@ -77,10 +84,12 @@ const essays = await getCollection("essays");
 
         .essay-body {
             font-family: inherit;
+            background-color: #ff6884;
+            text-wrap: wrap;
         }
 
         hr {
             display: none;
-        }
+        } */
     }
 </style>

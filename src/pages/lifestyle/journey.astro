@@ -1,5 +1,10 @@
 ---
 import PageLayout from "../../layouts/PageLayout.astro";
+import Image from "astro/components/Image.astro";
+import moment from "moment";
+import { getCollection } from "astro:content";
+
+let journeys = await getCollection("journeys");
 ---
 
 <PageLayout
@@ -8,5 +13,132 @@ import PageLayout from "../../layouts/PageLayout.astro";
     bgImage="/imgs/caption-bgs/page-caption-life.svg"
     paratext="当你带着朝圣的心情立足此地，你已经暗示自己要专注于风景"
 >
-    <div></div>
+    <div class="journal-list">
+        {
+            journeys.map(j =>(
+                <div class="jurnal-item">
+                    <div class="cover-wrapper">
+                        <Image src={j.data.image} alt="Cover" class="cover"></Image>
+                    </div>
+                    <div class="info-wrapper">
+                        <a class="info-title" href="#">{j.data.title}</a>
+                        <p class="info-date">{j.data.author} / {moment(j.data.date).format("YYYY年MM月DD日")}</p>
+                        <p class="info-abstract">{j.data.abstract}</p>
+                        <a class="info-link" href="#" >继续</a>
+                    </div>
+                </div>
+            ))
+        }
+    </div>
 </PageLayout>
+
+<style>
+    .journal-list{
+        padding: 10px 0;
+    }
+
+    .jurnal-item{
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        font-family:'Times New Roman', Times, serif;
+        margin: 40px auto;
+    }
+
+    .cover-wrapper{
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+    }
+
+    .cover{
+        width: 100%;
+        height: 100%;
+        transition: all 0.5s ease-in-out;
+    }
+
+    .cover:hover{
+        transform: scale(1.1);
+    }
+
+    .info-title{
+        font-size: 1.25rem;
+        font-weight: bolder;
+    }
+
+    .info-title:hover{
+        color: #FF758B;
+    }
+
+    .info-date{
+        font-size: 0.8rem;
+        color: #777;
+    }
+
+    .info-abstract{
+        display: -webkit-box; /* 必须结合的属性 ，将对象作为弹性伸缩盒子模型显示 。*/
+        -webkit-box-orient: vertical; /* 必须结合的属性 ，设置或检索伸缩盒对象的子元素的排列方式 。*/
+        text-overflow: ellipsis; /* 可以用来多行文本的情况下，用省略号“…”隐藏超出范围的文本 。*/
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        font-size: 0.9rem;
+    }
+
+    .info-link:hover{
+        color: #FF758B;
+    }
+
+    @media screen and (min-width: 640px) {
+        .journal-list{
+            width: 100%;
+            padding: 10px 0;
+        }
+
+        .jurnal-item{
+            width: 70%;
+            height: 210px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: row;
+            padding: 20px;
+            border-top: #EFF1F5 1px solid;
+            gap: 30px;
+            font-family:'Times New Roman', Times, serif;
+        }
+
+        .journal-list > .jurnal-item:first-child{
+            border-top: none;
+        }
+
+        .cover-wrapper{
+            width: 40%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .cover{
+            width: 100%;
+            height: 100%;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .cover:hover{
+            transform: scale(1.1);
+        }
+
+        .info-wrapper{
+            flex: 1;
+            position: relative;
+        }
+
+        .info-link{
+            position: absolute;
+            bottom: 0;
+            font-size: 0.9rem;
+            font-weight: bolder;
+        }
+        
+    
+    }
+</style>

@@ -1,26 +1,5 @@
 import { defineCollection, z } from "astro:content";
 
-const books = defineCollection({
-    type: 'content',
-    schema: z.object({
-        title: z.string(),
-        author: z.string(),
-        date: z.date(),
-        description: z.string().optional()
-    })
-})
-
-const essays = defineCollection({
-    type: 'content',
-    schema: z.object({
-        title: z.string(),
-        date: z.date(),
-        author: z.string(),
-        description: z.string().optional()
-    })
-})
-
-
 const posts = defineCollection({
     type: 'content',
     schema: z.object({
@@ -39,7 +18,42 @@ const posts = defineCollection({
     })
 })
 
+const books = defineCollection({
+    type: 'content',
+    schema: z.object({
+        title: z.string(),
+        date: z.date(),
+        author: z.string().optional(),
+        relation: z.string().optional(),
+        description: z.string().optional()
+    })
+})
+
+const essays = defineCollection({
+    type: 'content',
+    schema: z.object({
+        title: z.string(),
+        date: z.date(),
+        author: z.string(),
+        description: z.string().optional()
+    })
+})
+
+const journeys = defineCollection({
+    type: 'content',
+    schema: ({ image }) => z.object({
+        title: z.string(),
+        date: z.date(),
+        author: z.string(),
+        image: image(),
+        abstract: z.string(),
+        description: z.string().optional()
+    })
+})
+
 export const collections = {
+    posts,
+    books,
     essays,
-    posts
+    journeys
 };
